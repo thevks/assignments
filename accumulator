@@ -1,1 +1,30 @@
+//Installing and configuring Fluentd
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y build-essential libssl-dev zlib1g-dev ruby-dev
+
+curl -fsSL https://toolbelt.treasuredata.com/sh/install-ubuntu-jammy-td-agent4.sh | sh
+sudo systemctl start td-agent.service
+sudo systemctl stop td-agent.service
+
+sudo systemctl status td-agent.service
+sudo td-agent-gem install fluent-plugin-kafka
+
+Edit /etc/td-agent/td-agent.conf with following contents
+
+<source>
+  @type tail
+  path /tmp/logfile.log
+  pos_file /tmp/logfile.pos
+  tag myapp.log
+  format none
+</source>
+
+<match myapp.log>
+  @type kafka
+  brokers localhost:9092  		      # Replace with your Kafka broker address
+  default_topic logs  	            # Kafka Topic Name is logs
+  use_event_time true
+</match>
+
+Verify logs in log file /var/log/td-agent/td-agent.log
 
