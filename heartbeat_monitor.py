@@ -3,7 +3,7 @@ from kafka import KafkaConsumer
 import json
 from datetime import datetime, timedelta
 
-consumer = KafkaConsumer('your_kafka_topic', bootstrap_servers='localhost:9092', auto_offset_reset='earliest', value_deserializer=lambda x: json.loads(x.decode('utf-8')))
+consumer = KafkaConsumer('logs', bootstrap_servers='localhost:9092', auto_offset_reset='earliest', value_deserializer=lambda x: json.loads(x.decode('utf-8')))
 heartbeat_status = {}
 
 def check_node_status():
