@@ -8,17 +8,3 @@ sudo systemctl status kafka
 kafka-topics.sh --list --bootstrap-server localhost:9092
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic your_kafka_topic --from-beginning
 
-//Installing elasticsearch
-sudo apt update
-sudo apt install openjdk-11-jre -y
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-sudo sh -c 'echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list'
-sudo apt update
-sudo apt install elasticsearch -y
-sudo vim /etc/elasticsearch/elasticsearch.yml
-    network.host: 0.0.0.0
-sudo systemctl start elasticsearch
-sudo systemctl status elasticsearch
-sudo systemctl enable elasticsearch
-curl -X GET "localhost:9200/"
-
