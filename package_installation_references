@@ -39,10 +39,6 @@ Edit /etc/td-agent/td-agent.conf with following contents
 Verify logs in log file /var/log/td-agent/td-agent.log
 
 
-//Verify logs onto Kafka topic
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic your_kafka_topic --from-beginning
-
-
 //Installing elasticsearch
 sudo apt update
 sudo apt install openjdk-11-jre -y
